@@ -5,7 +5,7 @@ pipeline {
       steps {
         echo 'build stage'
         bat 'mvn -DskipeTests clean package'
-        echo 'la construction terminé '
+        echo 'la construction terminÃ© '
         archiveArtifacts '**/target/*.jar'
       }
     }
@@ -21,11 +21,11 @@ pipeline {
           }
         }
 
-        stage('test intégration') {
+        stage('test intÃ©gration') {
           steps {
             echo 'test fonctionnel'
             bat 'mvn -Dtest="com.example.testingweb.integration.**" test'
-            echo 'integration terminé'
+            echo 'integration terminÃ©'
           }
         }
 
@@ -33,7 +33,7 @@ pipeline {
           steps {
             echo 'smoke test'
             bat 'mvn -Dtest="com.example.testingweb.functional.**" test'
-            echo 'test fonctionnel terminé'
+            echo 'test fonctionnel terminÃ©'
           }
         }
 
@@ -46,9 +46,13 @@ pipeline {
         input(message: 'Voulais -vous continnuer ', ok: 'alons-y')
         echo 'le deployement va demarrer'
         bat 'mvn -DskipTests install'
-        echo 'déploiement terminée'
+        echo 'dÃ©ploiement terminÃ©e'
       }
     }
 
+  }
+  tools {
+    maven 'maven 3.9'
+    jdk 'jdk-11'
   }
 }
